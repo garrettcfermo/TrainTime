@@ -13,6 +13,7 @@
   <!-- Styles -->
   <link rel="stylesheet" href="assets/css/reset.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
 
   <!-- Fonts -->
@@ -22,24 +23,93 @@
 
 <body>
 
-<div id="index-banner" class="parallax-container">
-  <div class="section no-pad-bot">
-    <div class="container">
-      <br><br>
-      <h1 class="header center teal-text text-lighten-2">Parallax Template</h1>
-      <div class="row center">
-        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-      </div>
-      <div class="row center">
-        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light teal lighten-1">Get
-          Started</a>
-      </div>
-      <br><br>
 
+  <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <h1 class="header center teal-text text-lighten-2">Anytime is Train Time</h1>
+        <div class="row center">
+          <h5 class="header col s12 light">Choo Choo. Chee Chee</h5>
+        </div>
+      </div>
     </div>
+    <div class="parallax"><img src="assets/images/background_image_1.jpg" alt="Unsplashed background img 1" style="transform: translate3d(-50%, 222.582px, 0px); opacity: 1;"></div>
   </div>
-  <div class="parallax"><img src="background1.jpg" alt="Unsplashed background img 1" style="transform: translate3d(-50%, 322.682px, 0px); opacity: 1;"></div>
-</div>
+
+
+  <div class="container currentTrain">
+    <h5>Current Train Schedule</h5>
+    <table class="highlight">
+      <thead>
+        <tr>
+          <th>Train Name</th>
+          <th>Destination</th>
+          <th>Frequency (min)</th>
+          <th>Next Arrival</th>
+          <th>Minutes Away</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Alvin</td>
+          <td>Eclair</td>
+          <td>$0.87</td>
+        </tr>
+        <tr>
+          <td>Alan</td>
+          <td>Jellybean</td>
+          <td>$3.76</td>
+        </tr>
+        <tr>
+          <td>Jonathan</td>
+          <td>Lollipop</td>
+          <td>$7.00</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <div class="container addTrain">
+    <h5>Add Train Schedule</h5>
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="trainName" type="text" class="validate">
+            <label for="trainNaem">Train Name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="destination" type="text" class="validate">
+            <label for="destination">Destination</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="firstTrainTime" type="text" class="validate">
+            <label for="firstTrainTime">First Train Time (HH:MM - militray time)</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="frequencyMin" type="number" class="validate">
+            <label for="frequencyMin">Frequency (min)</label>
+          </div>
+        </div>
+        <div class="row">
+          
+          <button class="btn waves-effect waves-light addTrain-btn" type="submit" name="action">Submit
+            <i class="material-icons right">train</i>
+          </button>
+        </div>
+    </form>
+  </div>
+
+
 
   <!-- Java Scripts -->
   <script src='https://code.jquery.com/jquery-3.3.1.js' integrity='sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60='
