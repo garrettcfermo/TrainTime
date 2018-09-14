@@ -21,12 +21,19 @@
     // Grabs Train Info
     var trainName = $('#trainName').val().trim()
     var trainDest = $('#destination').val().trim()
-    var trainFirstTime = $('#firstTrainTime').val().trim()
+    var trainFirstTime = moment($('#firstTrainTime').val().trim(),"hh:mm").format("X")
     var trainFreq = $('#frequencyMin').val().trim()
 
-    console.log(trainName)
-    console.log(trainDest)
-    console.log(trainFirstTime)
-    console.log(trainFreq)
+    // Combining into a Object
+    var trainInfo ={
+      name: trainName,
+      destination: trainDest,
+      first_time: trainFirstTime,
+      frequency: trainFreq
+    }
+
 
   })
+
+var x = moment().startOf('hour').format()
+console.log(x)
