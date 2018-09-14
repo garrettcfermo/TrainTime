@@ -35,5 +35,21 @@
 
   })
 
-var x = moment().startOf('hour').format()
-console.log(x)
+var ftime= moment("10:00","HH:mm")
+console.log("Start Time:" +ftime)
+
+var ctime=moment()
+console.log("Current Time: " + ctime)
+
+
+var minArrival = ctime.diff(ftime,'minutes')
+var minLast= minArrival % 10
+var awayTrain = 10 - minLast
+
+console.log(minArrival)
+console.log(minLast)
+console.log(awayTrain)
+
+var nextArrival = ctime.add(awayTrain,'minutes').format("hh:mm A")
+
+console.log(nextArrival)
