@@ -15,6 +15,7 @@ firebase.initializeApp(config);
 var db = firebase.database()
 
 
+// Click Add Train Button
 $('.add-train-btn').on('click', function () {
   event.preventDefault()
 
@@ -46,54 +47,64 @@ $('.add-train-btn').on('click', function () {
   $('#frequencyMin').val('')
 })
 
-// Refresh Button 
 
-$(".refreshbtn").on('click',function(){
-  location.reload()
-})
+// Firebase Event Function
+function createTrainTable() {
+  db.ref().on("child_added", function (data) {
 
-// Firebase Event
+    var trainName = data.val().name
+    var trainDest = data.val().destination
+    var trainFirstTime = data.val().firstTime
+    var trainFreq = data.val().frequency
 
-db.ref().on("child_added", function (data) {
+    // Current Time
+    var currentTime = moment().format("X")
 
-  var trainName = data.val().name
-  var trainDest = data.val().destination
-  var trainFirstTime = data.val().firstTime
-  var trainFreq = data.val().frequency
+    // First Train of Current Day
+    var currentFirstTime = moment().set({ h: moment(trainFirstTime, "X").hour(), m: moment(trainFirstTime, "X").minute() }).format("X")
 
-  // Current Time
-  var currentTime = moment().format("X")
+    // Minutes from the Strat Time to Current Time
+    var minArrival = moment().diff(moment(currentFirstTime, "X"), 'minutes')
+    var minLast = minArrival % trainFreq
+    var awayTrain = 0
 
+    // Determines Minutes away from Next Train
+    if (minArrival < 0) {
+      awayTrain = (-minArrival) + 1
+    } else {
+      awayTrain = (trainFreq - minLast)
+    }
 
-  // Minutes from the Strat Time to Current Time
-  var minArrival = moment().diff(moment(trainFirstTime, "X"), 'minutes')
-  var minLast = minArrival % trainFreq
-  var awayTrain = 0
+    //Freq Logic
+    var logicFreq=""
+    if (currentTime < currentFirstTime){
+      logicFreq="Not Running"
+    } else{
+      logicFreq=trainFreq
+    }
 
-  // Determines Minutes away from Next Train
-  if (minArrival < 0) {
-    awayTrain = (-minArrival) + 1
-  } else {
-    awayTrain = (trainFreq - minLast)
-  }
+    // Determines Next Arrival
+    var nextArrival = moment().add(awayTrain, 'minutes').format("hh:mm A")
 
-  // Determines Next Arrival
-  var nextArrival = moment().add(awayTrain, 'minutes').format("hh:mm A")
+    // Create the new row
+    var newRow = $("<tr>").append(
+      $("<td>").text(trainName),
+      $("<td>").text(trainDest),
+      $("<td>").text(logicFreq),
+      $("<td>").text(nextArrival),
+      $("<td>").text(awayTrain)
+    );
 
-  // Create the new row
-  var newRow = $("<tr>").append(
-    $("<td>").text(trainName),
-    $("<td>").text(trainDest),
-    $("<td>").text(trainFreq),
-    $("<td>").text(nextArrival),
-    $("<td>").text(awayTrain)
-  );
+    // Append the new row to the table
+    $(".train-info-table").append(newRow)
+  })
+}
 
-  // Append the new row to the table
-  $(".train-info-table").append(newRow)
+createTrainTable()
 
-})
-
-
-
+// Refreshes Table every 20 seconds
+setInterval(function () {
+  $(".train-info-table").empty()
+  createTrainTable()
+}, 10000)
 

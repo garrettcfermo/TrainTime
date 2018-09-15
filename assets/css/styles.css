@@ -1,0 +1,53 @@
+/* Universal Styles */
+body{
+  background-color:lightgrey;
+}
+
+/* Jumbotron Styles */
+.parallax-container{
+  height:300px;
+  color:darkgoldenrod;
+  font-family: 'Abril Fatface', cursive;
+  text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+
+/* Current Train Schedule Styles */
+.currentTrain{
+  margin-top: 30px;
+}
+
+
+/*Add Train Schedule Styles */
+.addTrain {
+  margin-top:60px;
+}
+
+h5{
+  font-family: 'Abril Fatface', cursive;
+  font-size: 28px;
+  text-decoration: underline;
+}
+
+th{
+  font-weight: bold;
+  font-size: 20px;
+}
+
+td{
+  font-size: 16px;
+}
+
+.btn{
+  background-color:darkgoldenrod;
+}
+.btn:visited{
+  background-color: darkolivegreen;
+}
+.btn:hover {
+  background-color: rgb(156, 126, 48);
+}
+.btn:active {
+  background-color:rgb(118, 138, 85);
+}
+
